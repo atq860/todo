@@ -7,4 +7,3 @@ const generateToken = (id) => {
 };
 
 export default generateToken;
-// restart server because we add Environment variable

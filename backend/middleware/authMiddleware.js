@@ -2,7 +2,6 @@ import jwt from "jsonwebtoken";
 import User from "../models/userModel.js";
 import asyncHandler from "express-async-handler";
 
-// this is middleware, so passing next
 const protect = asyncHandler(async (req, res, next) => {
   let token;
 

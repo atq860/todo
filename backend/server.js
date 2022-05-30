@@ -14,26 +14,20 @@ connectDB();
 
 const app = express();
 
-// We are only running it in Development but not in Production
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
-// we need for req.body for parse, allow us to accept json data in the body
 app.use(express.json());
 
 app.use("/api/users", userRoutes);
 app.use("/api/todos", todoRoutes);
 app.use("/api/upload", uploadRoutes);
 
-// this is how we can make folder static
-// __dirnam is point to the current Directory, however this is not available if we using ES modules, its only avaible if you use Common JS which is required syntax
-// however we can mimic this
-
 const __dirname = path.resolve();
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
-// Serve frontend
+// Serve frontend for production
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/frontend/build")));
 

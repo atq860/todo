@@ -17,6 +17,6 @@ router
   .put(protect, updateTodo)
   .delete(protect, deleteTodo);
 
-router.route("/:id/complete").put(protect, updateTodoToCompleted);
+router.route("/:id/complete").put(updateTodoToCompleted);
 
 export default router;

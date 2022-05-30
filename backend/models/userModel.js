@@ -21,11 +21,10 @@ const userSchema = mongoose.Schema(
   },
 
   {
-    timestamps: true, // create fields like creatAt, updateAt etc.
+    timestamps: true,
   }
 );
 
-// we can also compare name by using this.name
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
@@ -35,7 +34,7 @@ userSchema.pre("save", async function (next) {
     next();
   }
 
-  const salt = await bcrypt.genSalt(10); // returns Promise so we need AWAIT
+  const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });
 

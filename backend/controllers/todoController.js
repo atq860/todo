@@ -67,6 +67,8 @@ const updateTodo = asyncHandler(async (req, res) => {
 const updateTodoToCompleted = asyncHandler(async (req, res) => {
   const todo = await Todo.findById(req.params.id);
 
+  console.log("todo ", todo);
+
   if (todo) {
     todo.status = true;
 
